@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ModelFuu</id>
+    <version>$version$</version>
+    <title>ModelFuu</title>
+    <authors>Cameron MacFarland</authors>
+    <owners>Cameron MacFarland</owners>
+    <licenseUrl>http://modelfuu.codeplex.com/license</licenseUrl>
+    <projectUrl>http://modelfuu.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Automatic property generation in ViewModels from Model classes.</description>
+    <copyright>Copyright 2011</copyright>
+    <tags>WPF MVVM</tags>
+  </metadata>
+</package>

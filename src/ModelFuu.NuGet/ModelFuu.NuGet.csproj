@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <BaseOutputPath>bin\</BaseOutputPath>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{73D4D265-9794-455E-98BB-B8BDDD535E7B}</ProjectGuid>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" $(IntermediateOutputPath) == '' ">
+    <IntermediateOutputPath Condition=" '$(PlatformName)' == 'AnyCPU' ">$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <IntermediateOutputPath Condition=" '$(PlatformName)' != 'AnyCPU' ">$(BaseIntermediateOutputPath)$(PlatformName)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntermediateOutputPath Condition="!HasTrailingSlash('$(IntermediateOutputPath)')">$(IntermediateOutputPath)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>$(BaseOutputPath)Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>$(BaseOutputPath)Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModelFuu\ModelFuu.csproj">
+      <Project>{BA376142-D1B5-45FD-95B6-A1C939E238C4}</Project>
+      <Name>ModelFuu</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelFuu\ModelFuu35.csproj">
+      <Project>{727374C2-9C7D-4D30-A18A-246406446A2B}</Project>
+      <Name>ModelFuu35</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ModelFuu.nuspec" />
+  </ItemGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
+  <Target Name="Build" DependsOnTargets="Clean">
+    <MakeDir Directories="$(IntermediateOutputPath)" Condition="!Exists('$(IntermediateOutputPath)')" />
+    <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\ModelFuu.nuspec" DestinationFolder="$(IntermediateOutputPath)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\ModelFuu\bin\$(Configuration)\ModelFuu.dll" DestinationFolder="$(IntermediateOutputPath)\lib\NET40" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\ModelFuu\bin\$(Configuration)\NET35\ModelFuu.dll" DestinationFolder="$(IntermediateOutputPath)\lib\NET35" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\ModelFuu\bin\$(Configuration)\ModelFuu.pdb" DestinationFolder="$(IntermediateOutputPath)\lib\NET40" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\ModelFuu\bin\$(Configuration)\NET35\ModelFuu.pdb" DestinationFolder="$(IntermediateOutputPath)\lib\NET35" />
+    <Copy SourceFiles="@(Source)" DestinationFolder="$(IntermediateOutputPath)\src\%(RecursiveDir)" />
+    <GetAssemblyIdentity AssemblyFiles="$(IntermediateOutputPath)\lib\NET40\ModelFuu.dll">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyInfo" />
+    </GetAssemblyIdentity>
+    <Exec WorkingDirectory="$(IntermediateOutputPath)" Command="$(NuGetExePath) pack ModelFuu.nuspec -Symbols -Version %(AssemblyInfo.Version)" />
+    <Copy SourceFiles="$(IntermediateOutputPath)\ModelFuu.%(AssemblyInfo.Version).nupkg" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="$(IntermediateOutputPath)\ModelFuu.%(AssemblyInfo.Version).symbols.nupkg" DestinationFolder="$(OutputPath)" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(OutputPath);$(IntermediateOutputPath)" />
+  </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean; Build" />
+</Project>
