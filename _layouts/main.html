@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>{{ site.appname }}</title>
+
+  <style type="text/css">
+    body {
+      margin-top: 1.0em;
+      background-color: #ffffff;
+      font-family: Segoe UI, Segoe WP, Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    #container {
+      margin: 0 auto;
+      width: 800px;
+    }
+    h1,h2,h3,h4,h5,h6 { color: #{{ site.accent }};}
+    h1 { font-size: 3.8em; margin-bottom: 3px; }
+    h1 span { margin-left:5px; font-size: 0.6em; color: #41b1e1; font-family: Segoe UI Light, Segoe WP Light, Segoe UI, Helvetica, sans-serif; font-weight: lighter;}
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; }
+    h3 { text-align: center;}
+    a, a:visited { color: #{{ site.accent }}; text-decoration:none; }
+    a:hover { background : #{{ site.accent}}; color:white;}
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px;}
+    .download { float: right; }
+    pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+  </style>
+</head>
+
+<body>
+  <a href="https://github.com/{{ site.username }}/{{ site.reponame }}"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <div id="container">
+  {{ content }}
+  </div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-28399680-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>

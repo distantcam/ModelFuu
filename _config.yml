@@ -1,0 +1,8 @@
+permalink: /:title.html
+auto: true
+markdown: rdiscount
+appname: ModelFuu
+username: DistantCam
+reponame: ModelFuu
+accent: 3333ff
+description: Automatic property generation in ViewModels from Model classes.
