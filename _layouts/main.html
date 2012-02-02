@@ -26,10 +26,12 @@
     a:hover { background : #{{ site.accent}}; color:white;}
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px;}
     .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
   </style>
+  
+  <link rel="stylesheet"  type="text/css" href="css/Base.css" />
+  
 </head>
 
 <body>
@@ -37,14 +39,20 @@
   <div id="container">
   {{ content }}
   </div>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-28399680-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
+  
+  <script type="text/javascript" src="scripts/jquery-1.7.min.js" />
+  <script type="text/javascript" src="scripts/pretify.js" />
+  <script type="text/javascript" src="scripts/site.js" />
+  
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-28399680-1");
+    pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
 </body>
 </html>
