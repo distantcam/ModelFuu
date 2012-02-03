@@ -50,6 +50,7 @@
     <Compile Include="Internals\ModelPropertyDescriptor.cs" />
     <Compile Include="Internals\ModelTypeDescriptionProvider.cs" />
     <Compile Include="Internals\ModelTypeDescriptor.cs" />
+    <Compile Include="ModelFuuDynamicWrapper.cs" />
     <Compile Include="ModelPropertiesCollectionBuilder.cs" />
     <Compile Include="ModelProperty.cs" />
     <Compile Include="ModelProperty.Static.cs">

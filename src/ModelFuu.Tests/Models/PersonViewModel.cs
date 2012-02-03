@@ -31,5 +31,11 @@ namespace ModelFuu.Tests.Models
             get { return (AddressViewModel)personProperties.GetValue(p => p.Address, this); }
             set { personProperties.SetValue(p => p.Address, this, value); }
         }
+
+        public string DynamicFirstName
+        {
+            get { return personProperties.GetDynamic(this).FirstName; }
+            set { personProperties.GetDynamic(this).FirstName = value; }
+        }
     }
 }

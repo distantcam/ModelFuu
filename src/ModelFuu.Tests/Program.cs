@@ -12,6 +12,9 @@ namespace ModelFuu.Tests
             //new ModelTests().CheckChangeEventFiresAcrossModels();
             //new ModelTests().CheckChangeEventDoesntFiresForDifferentModels();
 
+            new DynamicTests().CanGetDynamicProperty();
+            new DynamicTests().CanSetDynamicProperty();
+
             Console.ReadLine();
         }
     }

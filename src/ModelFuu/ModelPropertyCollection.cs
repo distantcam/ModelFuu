@@ -94,5 +94,12 @@ namespace ModelFuu
                 instanceProperties[prop.Name].SetValue(instance, prop.ExportValue(owner), null);
             }
         }
+
+#if !NET35
+        public dynamic GetDynamic(object instance)
+        {
+            return new ModelFuuDynamicWrapper(modelProperties, instance);
+        }
+#endif
     }
 }

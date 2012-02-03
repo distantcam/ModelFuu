@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicTests.cs" />
     <Compile Include="EventMonitor.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AddressViewModel.cs" />
