@@ -6,16 +6,32 @@ namespace ModelFuu.Tests
     {
         static void Main(string[] args)
         {
-            //new ModelTests().CanDefineNewProperties();
-            //new ModelTests().NewPropertyFiresOnChangedEvent();
-            //new ModelTests().CompositePropertyFiresOnChangedEvent();
-            //new ModelTests().CheckChangeEventFiresAcrossModels();
-            //new ModelTests().CheckChangeEventDoesntFiresForDifferentModels();
+            new ModelTests().CanDefineNewProperties();
+            new ModelTests().NewPropertyIsSameAsOriginal();
+            new ModelTests().NewPropertyCanBeEdited();
+            new ModelTests().NewPropertyFiresOnChangedEvent();
+
+            new ModelTests().CompositePropertyHasCorrectValue();
+            new ModelTests().CompositePropertyFiresOnChangedEvent();
+
+            new ModelTests().CheckChangeEventDoesntFiresForDifferentModels();
+            new ModelTests().CheckChangeEventDoesntFiresForDifferentModelsCalculated();
+
+            new ModelTests().CanDefineMappedProperty();
+
+            new ModelTests().MappedPropertyDefinesItselfAsAModelProperty();
+            new ModelTests().MappedPropertyDefinesItselfAsTheMappedType();
+            new ModelTests().MappedPropertyReturnsSameValue();
+
+            new ModelTests().PropertiesAreSavedBack();
+
+            new ModelTests().ObjectsUsingModelPropertiesAreCleanedUp();
 
             new DynamicTests().CanGetDynamicProperty();
             new DynamicTests().CanSetDynamicProperty();
 
-            Console.ReadLine();
+            Console.WriteLine("Done");
+            Console.ReadKey();
         }
     }
 }
