@@ -43,19 +43,17 @@ namespace ModelFuu
 
             EnsureTypeDescriptionProviderCreated(ownerType);
 
-            var ownerProperties = ownerType.GetProperties().ToDictionary(p => p.Name);
-
             List<ModelProperty> newModelProperties = new List<ModelProperty>();
 
             foreach (var modelPropInfo in modelType.GetProperties())
             {
                 InstanceModelProperty<TOwner> modelProp;
 
-                if (ownerProperties.ContainsKey(modelPropInfo.Name))
+                if (propertiesBuilder.Mappings.ContainsKey(modelPropInfo.Name))
                 {
                     modelProp = new MappedInstanceModelProperty<TOwner>(
                                     modelPropInfo.Name,
-                                    ownerProperties[modelPropInfo.Name].PropertyType,
+                                    propertiesBuilder.Mappings[modelPropInfo.Name],
                                     !modelPropInfo.CanWrite,
                                     modelPropInfo.PropertyType);
                 }
