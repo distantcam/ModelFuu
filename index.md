@@ -10,7 +10,7 @@ title: ModelFuu
 
 ## {{ site.title }} is on Nuget
 
-![PM> Install-Package ModelFuu](ModelFuuNuget.png)
+![PM> Install-Package ModelFuu](assets/ModelFuuNuget.png)
 
 ## Details
 
