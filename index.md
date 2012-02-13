@@ -1,18 +1,14 @@
 ---
-layout: main
+layout: page
+title: ModelFuu
 ---
-<div class="download">
-  <a href="https://github.com/{{ site.username }}/{{ site.reponame }}/zipball/master">
-  <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-  <a href="https://github.com/{{ site.username }}/{{ site.reponame }}/tarball/master">
-  <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-</div>
+{% include JB/setup %}
 
-#{{ site.appname }} <span class="small">by {{ site.username }}</span>
+#{{ site.title }} by {{ site.author.name }}
 
-<div class="description">{{ site.description }}</div>
+{{ site.tagline }}
 
-## {{ site.appname }} is on Nuget
+## {{ site.title }} is on Nuget
 
 ![PM> Install-Package ModelFuu](ModelFuuNuget.png)
 
@@ -59,14 +55,3 @@ Or if you want to declare a property in your ViewModel:
     }
 
 Grab ModelFuu from Nuget and give it a go in your next MVVM project.
-    
-## Download
-
-You can download this project in either
-[zip](https://github.com/{{ site.username }}/{{ site.reponame }}/zipball/master) or
-[tar](https://github.com/{{ site.username }}/{{ site.reponame }}/tarball/master) formats.
-
-You can also clone the project with [Git](http://git-scm.com)
-by running:
-
-    $ git clone git://github.com/{{ site.username }}/{{ site.reponame }}
