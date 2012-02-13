@@ -47,40 +47,57 @@ namespace SampleApp
 
             MainWindowViewModel.SearchStatusProperty.SetValue(viewModel, "");
 
-            searchTask = searchTask.ContinueWith<IEnumerable<Person>>(previous =>
-            {
-                var token = cancellation.Token;
+            // Do the search off the UI thread.
+            searchTask = searchTask.ContinueWith<IEnumerable<Person>>(
+                             previous => StartSearch(searchInfo),
+                             cancellation.Token,
+                             TaskContinuationOptions.OnlyOnRanToCompletion,
+                             TaskScheduler.Default)
 
-                // Delay, to allow the user to continue typing.
-                Thread.Sleep(2000);
+            // Update the ViewModel with the search results on the UI thread.
+            .ContinueWith(
+                             UpdateResults,
+                             cancellation.Token,
+                             TaskContinuationOptions.OnlyOnRanToCompletion,
+                             TaskScheduler.FromCurrentSynchronizationContext());
+        }
 
-                MainWindowViewModel.SearchStatusProperty.SetValue(viewModel, "Searching");
+        private IEnumerable<Person> StartSearch(SearchInfo searchInfo)
+        {
+            var token = cancellation.Token;
 
-                token.ThrowIfCancellationRequested();
+            // Delay, to allow the user to continue typing.
+            Thread.Sleep(2000);
 
-                var query = DataContext.QueryPeople();
+            // A search triggered after this one might have occurred.
+            token.ThrowIfCancellationRequested();
 
-                if (!string.IsNullOrEmpty(searchInfo.GivenName))
-                    query = query.Where(p => p.Firstname.StartsWith(searchInfo.GivenName, StringComparison.CurrentCultureIgnoreCase));
+            MainWindowViewModel.SearchStatusProperty.SetValue(viewModel, "Searching");
 
-                if (!string.IsNullOrEmpty(searchInfo.FamilyName))
-                    query = query.Where(p => p.Surname.StartsWith(searchInfo.FamilyName, StringComparison.CurrentCultureIgnoreCase));
+            var query = DataContext.QueryPeople();
 
-                // Represents a delay in retrieving the information.
-                Thread.Sleep(1000);
+            if (!string.IsNullOrEmpty(searchInfo.GivenName))
+                query = query.Where(p => p.Firstname.StartsWith(searchInfo.GivenName, StringComparison.CurrentCultureIgnoreCase));
 
-                return query.ToArray();
-            }, cancellation.Token, TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.Default)
+            if (!string.IsNullOrEmpty(searchInfo.FamilyName))
+                query = query.Where(p => p.Surname.StartsWith(searchInfo.FamilyName, StringComparison.CurrentCultureIgnoreCase));
 
-            .ContinueWith(t =>
-            {
-                viewModel.PeopleResults.Clear();
+            // Represents a delay in retrieving the information.
+            Thread.Sleep(1000);
 
-                foreach (var result in t.Result)
-                    viewModel.PeopleResults.Add(new PersonViewModel(result));
+            token.ThrowIfCancellationRequested();
 
-                MainWindowViewModel.SearchStatusProperty.SetValue(viewModel, "");
-            }, cancellation.Token, TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.FromCurrentSynchronizationContext());
+            return query.ToArray();
+        }
+
+        private void UpdateResults(Task<IEnumerable<Person>> t)
+        {
+            viewModel.PeopleResults.Clear();
+
+            foreach (var result in t.Result)
+                viewModel.PeopleResults.Add(new PersonViewModel(result));
+
+            MainWindowViewModel.SearchStatusProperty.SetValue(viewModel, "");
         }
     }
 }
