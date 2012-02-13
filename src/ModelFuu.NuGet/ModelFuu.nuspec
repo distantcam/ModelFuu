@@ -6,8 +6,8 @@
     <title>ModelFuu</title>
     <authors>Cameron MacFarland</authors>
     <owners>Cameron MacFarland</owners>
-    <licenseUrl>http://modelfuu.codeplex.com/license</licenseUrl>
-    <projectUrl>http://modelfuu.codeplex.com/</projectUrl>
+    <licenseUrl>https://github.com/distantcam/ModelFuu/blob/master/Licence.md</licenseUrl>
+    <projectUrl>https://github.com/distantcam/ModelFuu</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Automatic property generation in ViewModels from Model classes.</description>
     <copyright>Copyright 2011</copyright>

@@ -1,5 +1,3 @@
----
----
 # ModelFuu
 
 This codebase contains the [ModelFuu](http://distantcam.github.com/ModelFuu/) project.

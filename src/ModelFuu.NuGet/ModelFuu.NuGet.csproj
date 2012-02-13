@@ -37,7 +37,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ModelFuu.nuspec" />
+    <None Include="ModelFuu.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <Target Name="Build" DependsOnTargets="Clean">

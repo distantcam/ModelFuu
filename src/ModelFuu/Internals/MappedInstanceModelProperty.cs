@@ -5,7 +5,6 @@ namespace ModelFuu.Internal
     internal class MappedInstanceModelProperty<TOwner> : InstanceModelProperty<TOwner>
     {
         private readonly Type originalType;
-        private object mappedInstance;
 
         public MappedInstanceModelProperty(string name, Type propertyType, bool isReadOnly, Type originalType)
             : base(name, propertyType, isReadOnly)
